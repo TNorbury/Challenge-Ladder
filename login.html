@@ -1,21 +1,93 @@
 <html>
    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <link rel="stylesheet" href="/resources/stylesheet/style.css">
       <title>Ladder -- Log In</title>
    </head>
 
    <body>
-      <div style="display:flex;justify-content:center;align-items:center;">
-         <div style="display: inline-block; border: 3px solid #455772; padding: 12px 20px">
-            <form>
-               <div style="margin-bottom: 2px;"> Username: <input type="text" > </div>
-               Password: <input type="password" style="float: right;"><br>
-            </form>
-            <div style="" align="center">
-               <a href="/ladder/ladder.php"><input type="button" value="Log In" style="display: inline-block; float: left;"></input></a>
-               <a href="/register/registerUser.html" style="display: inline-block; float: right;">Register</a>
+      <div class="container mt-5">
+         <div id="LogIn" class="row justify-content-center">
+            <div class="text-center col-4" style="border: 3px solid #455772; padding: 12px 20px; background-color:white">
+               <form>
+                  <div class="row" style="margin-bottom: 2px;">
+                     <div class="col" align="left">Username: </div>
+                     <div class="col"><input type="text"></div>
+                  </div>
+                  <div class="row">
+                     <div class="col" align="left">Password:</div>
+                     <div class="col"><input type="password"></div>
+                  </div>
+               </form>
+               <div style="" align="center">
+                  <a href="/ladder/ladder.php"><input type="button" value="Log In" style="display: inline-block; float: left;"></a>
+                  <button onclick="DisplayRegister()" style="display: inline-block; float: right;">Register</button>
+               </div>
+            </div>
+         </div>
+
+         <div id="Register" class="row justify-content-center" style="display:none;">
+            <div class="text-center col-4" style="border: 3px solid #455772; padding: 12px 20px; background-color:white"> 
+               <div class="text-center"> <h2>Register for the Ladder</h2></div>
+               <form>
+                  <div class="row">
+                     <div class="col" align="left"><label for="name">Name: </label></div>
+                     <div class="col"><input type="text" name="name"></div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col" align="left"><label for="username">Username: </label></div>
+                     <div class="col"><input type="text" name="username"></div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col" align="left"><label for="password">Password: </label></div>
+                     <div class="col"><input type="password" name="password"></div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col" align="left"><label for="email">Email: </label></div>
+                     <div class="col"><input type="text" name="email"></div>
+                  </div>
+
+                  <div class="row">
+                     <div class="col" align="left"><label for="phone">Phone: </label></div>
+                     <div class="col"><input type="tel" name="phone"></div>
+                  </div>
+
+                  <div class="row mt-3">
+                     <div class="col" align="left">
+                        <input type="submit">
+                     </div>
+                     <div class="col" align="right">
+                        <input type="reset" value="Cancel" onclick="DisplayLogin()">
+                     </div>
+                  </div>
+               </form>
             </div>
          </div>
       </div>
+
+      <script>
+         function DisplayRegister() {
+            var logIn = document.getElementById('LogIn');
+            var register = document.getElementById('Register');
+
+            // Hide the login box and display the register box
+            logIn.style.display = 'none';
+            register.style.display = '';
+         }
+
+         function DisplayLogin() {
+            var logIn = document.getElementById('LogIn');
+            var register = document.getElementById('Register');
+
+            // Hide the login box and display the register box
+            logIn.style.display = '';
+            register.style.display = 'none';
+         }
+
+      </script>
    </body> 
 
 </html>
