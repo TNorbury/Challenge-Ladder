@@ -6,6 +6,26 @@
    </head>
 
    <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border border-dark justify-content-between">
+         <ul class="navbar-nav">
+            <li class="nav-item active">
+               <a class="navbar-brand" href="#">The Ladder</a>
+            </li>
+            <li class="nav-item active">
+               <a class="nav-link" href="#">My Challenges</a>
+            </li>
+            <li class="nav-item active">
+               <a class="nav-link" href="#">Games</a>
+            </li>
+         </ul>
+         <ul class="navbar-nav" align="right">
+            <li class="nav-item active">
+               <a class="nav-link" href="/login.html">Log Out</a>
+            </li>
+         </ul>
+      </nav>
+
+
       <div class="container mt-5">
          <div class="row justify-content-center">
             <div class="col-6 ">
