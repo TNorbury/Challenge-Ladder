@@ -9,20 +9,21 @@
       <div class="container mt-5">
          <div id="LogIn" class="row justify-content-center">
             <div class="text-center col-4" style="border: 3px solid #455772; padding: 12px 20px; background-color:white">
-               <form>
+               <form action="/login.php" method="post">
                   <div class="row" style="margin-bottom: 2px;">
                      <div class="col" align="left">Username: </div>
-                     <div class="col"><input type="text"></div>
+                     <div class="col"><input type="text" name="username" required></div>
                   </div>
                   <div class="row">
                      <div class="col" align="left">Password:</div>
-                     <div class="col"><input type="password"></div>
+                     <div class="col"><input type="password" name="password" required></div>
+                  </div>
+                  <br/>
+                  <div style="" align="center">
+                     <input type="submit" style="display:inline-block; float: left;" value="Log In">
+                     <button onclick="DisplayRegister()" style="display: inline-block; float: right;">Register</button>
                   </div>
                </form>
-               <div style="" align="center">
-                  <a href="/ladder/ladder.php"><input type="button" value="Log In" style="display: inline-block; float: left;"></a>
-                  <button onclick="DisplayRegister()" style="display: inline-block; float: right;">Register</button>
-               </div>
             </div>
          </div>
 
