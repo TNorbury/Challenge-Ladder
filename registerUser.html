@@ -1,0 +1,94 @@
+<html>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+      <link rel="stylesheet" href="/resources/stylesheet/style.css">
+      <title>Ladder -- Register</title>
+
+      <script>
+         function ValidatePasswords() {
+            var PW = document.getElementById("RegisterPassword").value;
+            var confirmPW = document.getElementById("RegisterConfirmPassword").value;
+
+            // If both fields are blank, hide the warnings
+            if (PW == "" && confirmPW == "")
+            {
+               document.getElementById("PWNoMatch").style.display = 'none';
+               document.getElementById("PWMatch").style.display = 'none';
+            }
+
+            // Let the user know that the passwords match
+            else if (PW == confirmPW)
+            {
+               document.getElementById("PWMatch").style.display = '';
+               document.getElementById("PWNoMatch").style.display = 'none';
+               document.getElementById("submitRegister").disabled=false;
+            }
+
+            // Let the user know that the passwords don't match
+            else if (PW != confirmPW)
+            {
+               document.getElementById("PWNoMatch").style.display = '';
+               document.getElementById("PWMatch").style.display = 'none';
+               document.getElementById("submitRegister").disabled=true;
+            }
+         }
+         
+         function gotoLogin() {
+            window.location="/login.html";
+         }   
+      </script>
+
+   </head>
+   <body>
+      <div class="container mt-5">
+         <div id="Register" class="row justify-content-center">
+            <div class="text-center col-5" style="border: 3px solid #455772; padding: 12px 20px; background-color:white"> 
+               <div class="text-center"> <h2>Register for the Ladder</h2></div>
+               <form action="http://dhansen.cs.georgefox.edu/~dhansen/echoForm.php" method="post">
+                  <div class="d-flex justify-content-between">
+                     <div class=""><label for="name">Name: </label></div>
+                     <div class=""><input type="text" name="name" required></div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                     <div class=""><label for="username">Username: </label></div>
+                     <div class=""><input type="text" name="username" required></div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                     <div class=""><label for="email">Email: </label></div>
+                     <div class=""><input type="text" name="email" required></div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                     <div class=""><label for="phone">Phone: </label></div>
+                     <div class=""><input type="tel" name="phone" required></div>
+                  </div>
+
+                  <div class="d-flex justify-content-between">
+                     <div class=""><label for="password">Password: </label></div>
+                     <div class=""><input id="RegisterPassword" type="password" name="password" oninput="ValidatePasswords()" required></div>
+                  </div>
+                  
+                  <div class="d-flex justify-content-between">
+                     <div class="">Confirm Password: </div>
+                     <div class=""><input id="RegisterConfirmPassword" type="password" name="confirmPassword" oninput="ValidatePasswords()" required></div>
+                  </div>
+                  
+                  <div id="PWNoMatch" style="color:red; display:none;">Passwords must match</div>
+                  <div id="PWMatch" style="color:green; display:none;">Passwords match</div>
+
+                  <div class="d-flex mt-3 justify-content-between">
+                     <div class="" >
+                        <input id="submitRegister" class="btn btn" type="submit" disabled=true>
+                     </div>
+                     <div class="">
+                        <input onClick="gotoLogin()" class="btn btn" type="reset" value="Cancel">
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
