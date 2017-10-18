@@ -43,7 +43,8 @@
                   echo "<th>Player</th>\n";
                   echo "</tr>\n";
                   echo "</thead>\n";
-
+                  
+                  echo "<tbody>";
                   while ($row = pg_fetch_row($result)) {
                      echo "<tr class='table-light'>\n";
 
@@ -52,6 +53,7 @@
 
                      echo "</tr>\n";
                   }
+                  echo "</tbody>";
                
                   echo "</table>\n";
                ?>
