@@ -1,4 +1,5 @@
 <?php 
+   session_start();
    $username = $_POST['username'];
    $password = $_POST['password'];
 
@@ -6,12 +7,6 @@
    $db = pg_connect("host=localhost dbname=ladder user=bitnami password=bitnami");
    $query = "select username, password from player where username='$username'";
    $result = pg_query($db, $query);
-
-   echo '
-   <html>
-   <head>
-   <script>
-   ';
    
    // Get the data returned by the database
    $row = pg_fetch_row($result);
@@ -22,10 +17,18 @@
    // incorrect, then don't allow them to log in.
    if (!$dbUsername || $password != $dbPassword) {
       echo '
-      function logIn() {
+      <html>
+      <head>
+      <script>
+      function wrongPW() {
          alert("The username or password is incorrect");
-         window.location="/login.html";
+         window.location = "/login.html";
       }
+      </script>
+      </head>
+      <body onload="wrongPW()">
+      </body>
+      </html>
       ';
    }
 
@@ -33,21 +36,11 @@
    // to the ladder
    // We'll want to change this so that it decrypts the PW in the database before checking for a match
    else if ($dbUsername && $password == $dbPassword) {
-      echo '
-      function logIn() {
-         window.location="/ladder/ladder.php";
-      }
-      ';
-
       // Set the session username to the user that just logged in
-      $_SESSION['username'] = $username;
+      $_SESSION["username"] = $username;
+
+      header("Location: /ladder/ladder.php");
+      exit();
    }
 
-   echo '
-   </script>
-   </head>
-   <body onload="logIn()">
-   </body>
-   </html>
-   ';
 ?>

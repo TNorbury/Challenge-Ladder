@@ -1,3 +1,6 @@
+<?php
+   session_start();
+?>
 <html>
    <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -9,8 +12,10 @@
       <?php
          // This will include the navbar
          include($_SERVER['DOCUMENT_ROOT'].'/navbar/navbar.html');
-      ?>
 
+         // Get the current user's username
+         $username = $_SESSION["username"];
+      ?>
       <div class="container mt-5">
          <div class="row justify-content-center">
             <div class="col-6 ">
@@ -18,7 +23,7 @@
                   // Connect to the database and query it
                   $db_connection = pg_connect("host=localhost dbname=ladder user=bitnami password=bitnami");
 
-                  $result = pg_query($db_connection ,"select rank, name from player");
+                  $result = pg_query($db_connection ,"select rank, name, username from player");
 
                   // Create a table to display the results of the query
                   echo "<table class='table table-hover table-bordered'>\n";
@@ -31,7 +36,16 @@
                   
                   echo "<tbody>";
                   while ($row = pg_fetch_row($result)) {
-                     echo "<tr class='table-light'>\n";
+
+                     // If this row is the row of the current user, then highlight it
+                     if ($username == $row[2])
+                     {
+                        echo "<tr class='table-primary'>\n";
+                     }
+                     else 
+                     {
+                        echo "<tr class='table-light'>\n";
+                     }
 
                      echo "<td>$row[0]</td>\n";
                      echo "<td>$row[1]</td>\n";
