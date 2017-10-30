@@ -76,11 +76,11 @@
                      if (in_array($row[2], $challengees))
                      {
                         echo "<td>$row[1]</td>
-                              <td align='right'><button>Challenge</button></td>";
+                              <td align='right'><button class='btn btn-info btn-sm'>Challenge</button></td>";
                      }
                      else
                      {
-                        echo "<td colspan=2>$row[1]</td>";
+                        echo "<td colspan=2 style='height:56px'>$row[1]</td>";
                      }
 
                      echo "</tr>\n";
