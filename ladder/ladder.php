@@ -59,7 +59,6 @@
                   
                   echo "<tbody>";
                   while ($row = pg_fetch_row($ladder_result)) {
-
                      // If this row is the row of the current user, then highlight it
                      if ($username == $row[2])
                      {
