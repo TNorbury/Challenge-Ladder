@@ -1,24 +1,26 @@
 <?php 
-   $name = $_POST['name'];
-   $username = $_POST['username'];
-   $password = $_POST['password'];
-   $email = $_POST['email'];
-   $phone = $_POST['phone'];
-
    // Connect to the database
-   $db = pg_connect("host=localhost dbname=ladder user=bitnami password=bitnami");
+   require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
 
-   // This is the query we'll send to the database
-   $query = "insert into player (name, email, rank, phone, username, password) select '$name', '$email', max(rank)+1, '$phone', '$username', '$password' from player";
+   // This is the query that'll add the person to the database
+   $query = $connection->prepare("insert into player (name, email, rank, phone,
+                                                      username, password) 
+                                 select :name, :email, max(rank)+1, :phone, 
+                                        :username, :password from player");
 
-   // Query the database
-   $result = pg_query($db, $query);
+   // Execute the query
+   $query->execute(array(':name'=>$_POST['name'], ':email'=>$_POST['email'],
+      ':phone'=>$_POST['phone'], ':username'=>$_POST['username'], 
+      ':password'=>$_POST['password']));
 
-   if ($result == false) {
+   // If no rows were inserted, then the user wasn't registered to the database
+   if ($query->rowCount() == 0) {
       echo "Error: Could not register to the database";
       die();
    }
    
+   // If the user was able to register, display a message and redirect to the
+   // login page
    echo '
    <html>
    <head>

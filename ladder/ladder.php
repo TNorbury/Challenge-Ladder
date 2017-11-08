@@ -20,32 +20,33 @@
          <div class="row justify-content-center">
             <div class="col-7 ">
                <?php
-                  $challengers_query = "
-                     select p.name as challenger, c.name as challengee, c.username
+                  
+                  // Get the php file that connects to the database
+                  require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
+
+                  // This will get all the players that are in the ladder
+                  $ladderResult = $connection->query("select rank, name, username from player order by rank"); 
+
+                  // This will prepare a query that will get all the people that can be challenged by the current user
+                  $challengeesQuery = $connection->prepare(
+                     "select p.name as challenger, c.name as challengee, c.username as challengeeUsername
                         from player as p, player as c 
-                        where p.username = '$username' and
+                        where p.username = :username and
                         c.rank between (p.rank-3) and (p.rank-1) and
                         not exists (select * from challenge
-                                    where (challenger = c.username or
-                                           challengee = c.username or
-                                           challenger = p.username or
-                                           challengee = p.username) and
-                                    not accepted isNull)";
+                           where (challenger = c.username or
+                                  challengee = c.username or
+                                  challenger = p.username or
+                                  challengee = p.username) and
+                           not accepted isNull)"
+                  );
 
-                  // Connect to the database and query it
-                  $db_connection = pg_connect("host=localhost dbname=ladder user=bitnami password=bitnami");
-
-                  // This will get all the people that are in the ladder 
-                  $ladder_result = pg_query($db_connection ,"select rank, name, username from player order by rank");
-
-                  // This will get all the people that can be challenged by the current user
-                  $challengers_result = pg_query($db_connection, $challengers_query);
-
+                  // Now we'll execute the above query to get all the users available to challenge
+                  $challengeesQuery->execute(array(':username'=>$username));
                   // Put all of the player the user can challenge into an array
                   $challengees = array();
-                  while ($row = pg_fetch_row($challengers_result))
-                  {
-                     array_push($challengees, $row[2]);
+                  foreach($challengeesQuery->fetchAll() as $resultRow) {
+                     array_push($challengees, $resultRow['challengeeusername']);
                   }
 
                   // Create a table to display the results of the query
@@ -56,11 +57,13 @@
                   echo "<th colspan='2'>Player</th>\n";
                   echo "</tr>\n";
                   echo "</thead>\n";
-                  
+                 
+                  // Iterate over the query results and display them as a "ladder"
                   echo "<tbody>";
-                  while ($row = pg_fetch_row($ladder_result)) {
+                  foreach($ladderResult->fetchAll() as $resultRow)
+                  {
                      // If this row is the row of the current user, then highlight it
-                     if ($username == $row[2])
+                     if ($username == $resultRow[username])
                      {
                         echo "<tr class='table-primary'>\n";
                      }
@@ -69,17 +72,17 @@
                         echo "<tr class='table-light'>\n";
                      }
 
-                     echo "<td>$row[0]</td>\n";
+                     echo "<td>$resultRow[rank]</td>\n";
 
                      // If this person can be challenged by the user, then put a button to challenge them
-                     if (in_array($row[2], $challengees))
+                     if (in_array($resultRow[username], $challengees))
                      {
-                        echo "<td>$row[1]</td>
+                        echo "<td>$resultRow[name]</td>
                               <td align='right'><button class='btn btn-info btn-sm'>Challenge</button></td>";
                      }
                      else
                      {
-                        echo "<td colspan=2 style='height:56px'>$row[1]</td>";
+                        echo "<td colspan=2 style='height:56px'>$resultRow[name]</td>";
                      }
 
                      echo "</tr>\n";
