@@ -1,5 +1,8 @@
 <?php
    session_start();
+
+   // Make sure there is somebody logged in
+   require($_SERVER['DOCUMENT_ROOT'].'/resources/sharedScripts/ensureLogin.php');
 ?>
 <html>
    <head>
