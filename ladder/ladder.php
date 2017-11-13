@@ -9,6 +9,18 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
       <link rel="stylesheet" href="/resources/stylesheet/style.css">
       <title>Ladder</title>
+
+      <script>
+         // This function changes the necessary text within the modal
+         function openChallengeModal(challengee) {
+           // This will set text in the modal to reflect the person to be challeneged
+           document.getElementById("challengeModalHeader").innerHTML = "Challenge " + challengee + "!";  
+           document.getElementById("challengeModalName").value = challengee;
+
+           // Reset the date field to its default value
+           document.getElementById("challengeModalDate").value = "mm/dd/yyyy";
+         }
+      </script>
    </head>
 
    <body>
@@ -82,7 +94,7 @@
                      {
                         echo "<td>$resultRow[name]</td>
                               <td align='right'>
-                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal'>Challenge</button>
+                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"$resultRow[name]\")'>Challenge</button>
                               </td>";
                      }
                      else
@@ -112,21 +124,30 @@
                   </button>
                </div>
 
+               <form action="http://dhansen.cs.georgefox.edu/~dhansen/Classes/ClientServer/Protected/Examples/echoForm.php" method="post">
                <div class="modal-body">
-                  Issue a challenge?
+                  <div class="d-flex justify-content-between">
+                     <div><label for="challengee">Challengee: </label></div>
+                     <div><input type="text" id="challengeModalName" name="challengee" readonly></div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                     <div><label for="challengeDate">Challenge Date: </label></div>
+                     <div><input type="date" name="challengeDate" id="challengeModalDate" required></div>
+                  </div>
                </div>
 
                <div class="modal-footer">
-                  <button type="button" class="btn" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn">Issue Challenge</button>
+                  <input type="submit" class="btn" value="Issue Challenge"></input>
+                  <input type="reset" class="btn" data-dismiss="modal" value="Cancel"></input>
                </div>
+               </form>
             </div>
          </div>
       </div>
 
-   <!-- Get bootstrap JavaScript -->
-   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+      <!-- Get bootstrap JavaScript -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
    </body>
 </html>
