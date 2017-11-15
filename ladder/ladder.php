@@ -12,10 +12,11 @@
 
       <script>
          // This function changes the necessary text within the modal
-         function openChallengeModal(challengee) {
+         function openChallengeModal(challengee, challengeeUsername) {
            // This will set text in the modal to reflect the person to be challeneged
            document.getElementById("challengeModalHeader").innerHTML = "Challenge " + challengee + "!";  
            document.getElementById("challengeModalName").value = challengee;
+           document.getElementById("challengeModalUsername").value = challengeeUsername;
 
            // Reset the date field to its default value
            document.getElementById("challengeModalDate").value = "mm/dd/yyyy";
@@ -94,7 +95,7 @@
                      {
                         echo "<td>$resultRow[name]</td>
                               <td align='right'>
-                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"$resultRow[name]\")'>Challenge</button>
+                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"$resultRow[name]\", \"$resultRow[username]\")'>Challenge</button>
                               </td>";
                      }
                      else
@@ -124,7 +125,7 @@
                   </button>
                </div>
 
-               <form action="http://dhansen.cs.georgefox.edu/~dhansen/Classes/ClientServer/Protected/Examples/echoForm.php" method="post">
+               <form action="/ladder/issueChallenge.php" method="post">
                <div class="modal-body">
                   <div class="d-flex justify-content-between">
                      <div><label for="challengee">Challengee: </label></div>
@@ -134,6 +135,7 @@
                      <div><label for="challengeDate">Challenge Date: </label></div>
                      <div><input type="date" name="challengeDate" id="challengeModalDate" required></div>
                   </div>
+                  <input type="hidden" name="challengeeUsername" id="challengeModalUsername" readonly>
                </div>
 
                <div class="modal-footer">
