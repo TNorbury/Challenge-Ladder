@@ -57,7 +57,7 @@
                         foreach ($othersChallengesQuery->fetchAll() as $row) {
                            echo "
                               <tr class='table-light'>
-                                 <form action='http://dhansen.cs.georgefox.edu/~dhansen/Classes/ClientServer/Protected/Examples/echoForm.php' method='post'>
+                                 <form action='/challenges/handleChallenge.php' method='post'>
                                     <td>$row[name]</td>
                                     <td align='right'><input style='border:none;' name='challengeDate' value='$row[scheduled]' readonly></input></td>
                                     <input type='hidden' name='challengerUsername' value='$row[challenger]' readonly></input>
