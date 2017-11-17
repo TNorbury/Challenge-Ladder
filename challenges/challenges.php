@@ -35,8 +35,6 @@
             where challenger = :username
          ");
          $myChallengesQuery->execute(array(':username'=>$_SESSION[username]));
-
-
       ?>
       
       <div class="container mt-5">
@@ -58,10 +56,11 @@
                            echo "
                               <tr class='table-light'>
                                  <form action='/challenges/handleChallenge.php' method='post'>
-                                    <td>$row[name]</td>
+                                    <td>".htmlspecialchars($row[name])."</td>
                                     <td align='right'><input style='border:none;' name='challengeDate' value='$row[scheduled]' readonly></input></td>
                                     <input type='hidden' name='challengerUsername' value='$row[challenger]' readonly></input>
-                                    <td align='right'>";
+                                    <td align='right'>
+                              ";
                            
                            // If no challenge hasn't been accepted display the accept/reject buttons
                            if ($row[accepted] == "") {
@@ -104,7 +103,7 @@
                         foreach ($myChallengesQuery->fetchAll() as $row) {
                            echo "
                               <tr class='table-light'>
-                                 <td>$row[name]</td>
+                                 <td>".htmlspecialchars($row[name])."</td>
                                  <td align='right'>$row[scheduled]</td>
                               </tr>";
                         }
@@ -114,6 +113,5 @@
             </div>
          </div>
       </div>
-
    </body>
 </html>

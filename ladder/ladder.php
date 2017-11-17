@@ -93,14 +93,14 @@
                      // If this person can be challenged by the user, then put a button to challenge them
                      if (in_array($resultRow[username], $challengees))
                      {
-                        echo "<td>$resultRow[name]</td>
+                        echo "<td>".htmlspecialchars($resultRow[name])."</td>
                               <td align='right'>
                                  <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"$resultRow[name]\", \"$resultRow[username]\")'>Challenge</button>
                               </td>";
                      }
                      else
                      {
-                        echo "<td colspan=2 style='height:56px'>$resultRow[name]</td>";
+                        echo "<td colspan=2 style='height:56px'>".htmlspecialchars($resultRow[name])."</td>";
                      }
 
                      echo "</tr>\n";

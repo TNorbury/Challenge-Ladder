@@ -72,7 +72,7 @@
                         {
                            echo "
                               <tr class='table-light'>
-                                 <td>$resultRow[name]</td> 
+                                 <td>".htmlspecialchars($resultRow[name])."</td> 
                                  <td align='center'>".(round($resultRow[match_win_pct], 2)*100)."%</td> 
                                  <td align='center'>".(round($resultRow[game_win_pct], 2)*100)."%</td> 
                                  <td align='center'>".round($resultRow[avg_win_margin], 2)."</td> 
