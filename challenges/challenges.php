@@ -60,7 +60,7 @@
                                  <form action='http://dhansen.cs.georgefox.edu/~dhansen/Classes/ClientServer/Protected/Examples/echoForm.php' method='post'>
                                     <td>$row[name]</td>
                                     <td align='right'><input style='border:none;' name='challengeDate' value='$row[scheduled]' readonly></input></td>
-                                    <input type='hidden' name='challengeeUsername' value='$row[challenger]' readonly></input>
+                                    <input type='hidden' name='challengerUsername' value='$row[challenger]' readonly></input>
                                     <td align='right'>
                                        <input class='btn btn-primary btn-sm' type='submit' name='acceptChallenge' value='Accept'></input>
                                        <input class='btn btn-primary btn-sm' type='submit' name='rejectChallenge' value='Reject'></input>
