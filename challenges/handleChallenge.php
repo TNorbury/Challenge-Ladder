@@ -29,12 +29,15 @@
       // Delete all other challenges by or against the user
       $query = $connection->prepare("
          delete from challenge
-         where (challenger = :user or challengee = :user) 
+         where (challenger = :challengee 
+               or challengee = :challengee 
+               or challenger = :challenger 
+               or challengee = :challenger) 
             and accepted isnull
       ");
 
       // Execute the query
-      $query->execute(array(':user'=>$_SESSION[username]));
+      $query->execute(array(':challengee'=>$_SESSION[username], ':challenger'=>$_POST[challengerUsername]));
 
       // Alert the user that the challenge has been accepted and redirect 
       // them to challenge page
