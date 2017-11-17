@@ -56,7 +56,7 @@
       <div class="container mt-5">
          <div class="row justify-content-center">
             <div class="col-8">
-               <table class="table table-hover">
+               <table class="table table-hover border border-dark">
                   <thead class="thead-inverse">
                      <tr>
                         <th>Name</th>

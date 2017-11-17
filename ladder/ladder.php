@@ -66,7 +66,7 @@
                   }
 
                   // Create a table to display the results of the query
-                  echo "<table class='table table-hover'>\n";
+                  echo "<table class='table table-hover border border-dark'>\n";
                   echo "<thead class='thead-inverse'>\n";
                   echo "<tr>\n";
                   echo "<th>Rank</th>\n";
