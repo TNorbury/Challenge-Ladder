@@ -75,6 +75,7 @@
          </div>
 
          <!-- This will have all the challenges the user has made  -->
+         <br/>
          <h5 class="row justify-content-center">Challenges Issued Against Others</h5>
          <div class="row justify-content-center">
             <div class="col-6">
