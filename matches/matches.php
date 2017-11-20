@@ -20,6 +20,7 @@
             if (numGames < 5) {
                numGames++;
 
+               // Unhide the score row
                document.getElementById("scoreRow"+numGames).style.display = "";   
 
                // If a 5th row has been added, then hide the add row button
@@ -37,12 +38,6 @@
                challengerScore = document.getElementById("challengerScore" + gameNum).value;
                challengeeScore = document.getElementById("challengeeScore" + gameNum).value;
 
-               scoreDiff = (challengerScore - challengeeScore < 2 && challengeeScore - challengerScore < 2);
-
-               minScore = (challengerScore < 15 && challengeeScore < 15);
-
-               console.log(gameNum +"--Score Diff: " + scoreDiff + " minScore: " + minScore + " Both: " + (scoreDiff || minScore));
-
                // Make sure that one player has scored at least 15 points and 
                // that they have at least 2 more points than the other player
                if ((challengerScore < 15 && challengeeScore < 15) 
@@ -59,7 +54,6 @@
 
             // If all the scores are valid, then hid the error message
             if (validScore) {
-               console.log("here");
                document.getElementById("invalidScoreWarning").style.display = "none";
             }
          }
