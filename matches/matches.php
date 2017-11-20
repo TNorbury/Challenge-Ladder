@@ -213,7 +213,7 @@
                   <h5 class="modal-title" id="scoreModalHeader">Report the Scores of the Games</h5>
                </div>
 
-               <form action="http://dhansen.cs.georgefox.edu/~dhansen/Classes/ClientServer/Protected/Examples/echoForm.php" method="post" onsubmit="return validateNumWins()">
+               <form action="/matches/recordScore.php" method="post" onsubmit="return validateNumWins()">
                   <div class="modal-body">
                      <div id="gameScoreRows">
 
@@ -265,7 +265,7 @@
                         </div>
 
                      </div>
-                     <button id="moreScoreRowsButton" type="button" class="btn" onclick="addMoreGames()">+</button>
+                     <button id="moreScoreRowsButton" type="button" class="btn" onclick="addMoreGames()">Add Game</button>
                      <div id="invalidScoreWarning" style="display:none;">
                      </div>
 
