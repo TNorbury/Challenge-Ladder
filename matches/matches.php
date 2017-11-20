@@ -38,14 +38,14 @@
 
             // Iterate over all the game scores and ensure that they're valid
             for (var gameNum = 1; gameNum <= numGames && validScore; gameNum++) {
-               challengerScore = document.getElementById("challengerScore" + gameNum).value;
-               challengeeScore = document.getElementById("challengeeScore" + gameNum).value;
+               playerScore = document.getElementById("playerScore" + gameNum).value;
+               opponentScore = document.getElementById("opponentScore" + gameNum).value;
 
                // Make sure that one player has scored at least 15 points and 
                // that they have at least 2 more points than the other player
-               if ((challengerScore < 15 && challengeeScore < 15) 
-                  || (challengerScore - challengeeScore < 2 
-                     && challengeeScore - challengerScore < 2)) 
+               if ((playerScore < 15 && opponentScore < 15) 
+                  || (playerScore - opponentScore < 2 
+                     && opponentScore - playerScore < 2)) 
                {
                   validScore = false;
                   document.getElementById("invalidScoreWarning").style.display = "";
@@ -67,30 +67,40 @@
           * This function makes sure that a player has won 3 games
           */
          function validateNumWins() {
-            challengerWins = 0;
-            challengeeWins = 0;
+            playerWins = 0;
+            opponentWins = 0;
 
             // Iterate over all the game scores and count the number of wins
             for (var gameNum = 1; gameNum <= numGames && validScore; gameNum++) {
-               challengerScore = document.getElementById("challengerScore" + gameNum).value;
-               challengeeScore = document.getElementById("challengeeScore" + gameNum).value;
+               playerScore = document.getElementById("playerScore" + gameNum).value;
+               opponentScore = document.getElementById("opponentScore" + gameNum).value;
 
                // If this function is being called we can assume that all the 
                // score values have been validated. As such we just have to 
                // see which score is higher
-               if (challengerScore > challengeeScore) {
-                  challengerWins ++;
+               if (playerScore > opponentScore) {
+                  playerWins ++;
                }
                else {
-                  challengeeWins ++;
+                  opponentWins ++;
                }
             }
 
-            winnerFound =  (challengerWins == 3 || challengeeWins == 3);
+            winnerFound =  (playerWins == 3 || opponentWins == 3);
 
             // If a winner wasn't found then alert the user
             if (!winnerFound) {
                alert("One player must win 3 games");
+            }
+
+            // Otherwise, if a winner was found, then put that into the form
+            else {
+               if (playerWins == 3) {
+                  document.getElementById("matchWinner").value = "Player";
+               }
+               else {
+                  document.getElementById("matchWinner").value = "Opponent";
+               }
             }
 
             return winnerFound;
@@ -209,48 +219,48 @@
 
                         <div class="form-row">
                            <div class="form-group">
-                              <label for="challengerScore1">Your Score:</label>
-                              <input type="number" class="form-control" id="challengerScore1" name="challengerScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
+                              <label for="playerScore1">Your Score:</label>
+                              <input type="number" class="form-control" id="playerScore1" name="playerScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
                            </div>
                            <div class="form-group">
-                              <label for="challengeeScore1">Your Opponent's Score:</label>
-                              <input type="number" class="form-control" id="challengeeScore1" name="challengeeScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
-                           </div>
-                        </div>
-
-                        <div class="form-row">
-                           <div class="form-group">
-                              <input type="number" class="form-control" id="challengerScore2" name="challengerScore2" placeholder="Game 2" oninput="validateScoreValues()" required>
-                           </div>
-                           <div class="form-group">
-                              <input type="number" class="form-control" id="challengeeScore2" name="challengeeScore2" placeholder="Game 2" oninput="validateScoreValues()" required>
+                              <label for="opponentScore1">Your Opponent's Score:</label>
+                              <input type="number" class="form-control" id="opponentScore1" name="opponentScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
                            </div>
                         </div>
 
                         <div class="form-row">
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengerScore3" name="challengerScore3" placeholder="Game 3" oninput="validateScoreValues()" required>
+                              <input type="number" class="form-control" id="playerScore2" name="playerScore2" placeholder="Game 2" oninput="validateScoreValues()" required>
                            </div>
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengeeScore3" name="challengeeScore3" placeholder="Game 3" oninput="validateScoreValues()" required>
+                              <input type="number" class="form-control" id="opponentScore2" name="opponentScore2" placeholder="Game 2" oninput="validateScoreValues()" required>
+                           </div>
+                        </div>
+
+                        <div class="form-row">
+                           <div class="form-group">
+                              <input type="number" class="form-control" id="playerScore3" name="playerScore3" placeholder="Game 3" oninput="validateScoreValues()" required>
+                           </div>
+                           <div class="form-group">
+                              <input type="number" class="form-control" id="opponentScore3" name="opponentScore3" placeholder="Game 3" oninput="validateScoreValues()" required>
                            </div>
                         </div>
                         
                         <div id="scoreRow4" style="display:none" class="form-row">
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengerScore4" name="challengerScore4" placeholder="Game 4" oninput="validateScoreValues()">
+                              <input type="number" class="form-control" id="playerScore4" name="playerScore4" placeholder="Game 4" oninput="validateScoreValues()">
                            </div>
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengeeScore4" name="challengeeScore4" placeholder="Game 4" oninput="validateScoreValues()">
+                              <input type="number" class="form-control" id="opponentScore4" name="opponentScore4" placeholder="Game 4" oninput="validateScoreValues()">
                            </div>
                         </div>
 
                         <div id="scoreRow5" style="display:none" class="form-row">
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengerScore5" name="challengerScore5" placeholder="Game 5" oninput="validateScoreValues()">
+                              <input type="number" class="form-control" id="playerScore5" name="playerScore5" placeholder="Game 5" oninput="validateScoreValues()">
                            </div>
                            <div class="form-group">
-                              <input type="number" class="form-control" id="challengeeScore5" name="challengeeScore5" placeholder="Game 5" oninput="validateScoreValues()">
+                              <input type="number" class="form-control" id="opponentScore5" name="opponentScore5" placeholder="Game 5" oninput="validateScoreValues()">
                            </div>
                         </div>
 
@@ -258,6 +268,8 @@
                      <button id="moreScoreRowsButton" type="button" class="btn" onclick="addMoreGames()">+</button>
                      <div id="invalidScoreWarning" style="display:none;">
                      </div>
+
+                     <input type="hidden" id="matchWinner" name="matchWinner"></input>
                   </div>
 
                   <div class="modal-footer">
