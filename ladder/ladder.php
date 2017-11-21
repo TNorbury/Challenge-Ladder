@@ -129,11 +129,11 @@
                <div class="modal-body">
                   <div class="d-flex justify-content-between">
                      <div><label for="challengee">Challengee: </label></div>
-                     <div><input type="text" id="challengeModalName" name="challengee" readonly></div>
+                     <div><input class="form-control-plaintext" type="text" id="challengeModalName" name="challengee" readonly></div>
                   </div>
                   <div class="d-flex justify-content-between">
                      <div><label for="challengeDate">Challenge Date: </label></div>
-                     <div><input type="date" name="challengeDate" id="challengeModalDate" required></div>
+                     <div><input class="form-control" type="date" name="challengeDate" id="challengeModalDate" required></div>
                   </div>
                   <input type="hidden" name="challengeeUsername" id="challengeModalUsername" readonly>
                </div>

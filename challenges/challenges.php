@@ -57,7 +57,7 @@
                               <tr class='table-light'>
                                  <form action='/challenges/handleChallenge.php' method='post'>
                                     <td>".htmlspecialchars($row[name])."</td>
-                                    <td align='right'><input style='border:none;' name='challengeDate' value='$row[scheduled]' readonly></input></td>
+                                    <td align='right'><input class='form-control-plaintext' name='challengeDate' value='$row[scheduled]' readonly></input></td>
                                     <input type='hidden' name='challengerUsername' value='$row[challenger]' readonly></input>
                                     <td align='right'>
                                        <input class='btn btn-primary btn-sm' type='submit' name='acceptChallenge' value='Accept'></input>
