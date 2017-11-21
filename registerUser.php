@@ -27,7 +27,7 @@
    <script>
    function redirect() {
       alert("You have been registered to the Ladder!");
-      window.location="/login.html";
+      window.location="/index.html";
    }
    </script>
    </head>

@@ -5,7 +5,7 @@
    // login page
    if ($_SESSION["username"] == "")
    {
-      header("Location: /login.html");
+      header("Location: /index.html");
    }
 
    // Otherwise, just carry on

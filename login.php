@@ -24,7 +24,7 @@
       <script>
       function invalidLogin() {
          alert("The username or password is incorrect");
-         window.location = "/login.html";
+         window.location = "/index.html";
       }
       </script>
       </head>
