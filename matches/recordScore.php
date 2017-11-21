@@ -3,7 +3,6 @@
    // Make sure there is somebody logged in
    require($_SERVER['DOCUMENT_ROOT'].'/resources/sharedScripts/ensureLogin.php');
    
-
    // Get the php file that connects to the database
    require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
 
@@ -32,7 +31,6 @@
          insert into game (winner, loser, played, number, winner_score, loser_score)
          values(:winner, :loser, CURRENT_DATE, :gameNum, :winnerScore, :loserScore)
       ");
-
 
       // Determine if the challenger or challengee won the game
       if (($opponentIsChallenger) 
@@ -140,11 +138,6 @@
       ");
       $query->execute(array(':challengeeRank'=>$challengeeRank, ':challenger'=>$challenger));
       echo "<br/>";
-   }
-   else if (($opponentIsChallenger && $_POST[matchWinner] == "Player") 
-      || (!$opponentIsChallenger && $_POST[matchWinner] == "Opponent"))
-   {
-      // Challengee is the winner. There won't be any chagnes made to the ladder.
    }
 
    // Delete the challenge that was just completed from the database
