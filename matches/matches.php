@@ -133,7 +133,7 @@
          if ($myMatchResult != false) {
             echo "
                <div class='container mt-5'>
-                  <div class='row'>
+                  <div class='row justify-content-center'>
                      <div class='col-5 border border-dark' style='padding:12px 20px; background-color:white;'>
                         <h4>Your Match</h4>
                         <br/>
@@ -174,7 +174,7 @@
          $query->execute(array(':username'=>$_SESSION[username]));
       ?>
       <div class="container mt-5">
-         <div class="row">
+         <div class="row justify-content-center">
             <div class="col-5 border border-dark" style="padding:12px 20px; background-color:white;">
                <h4>Current Matches</h4>
                <br/>
