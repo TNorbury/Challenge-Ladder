@@ -24,7 +24,7 @@
          $othersChallengesQuery = $connection->prepare("
             select challenger, scheduled, name, accepted from challenge
                join player on challenger = username
-            where challengee = :username
+            where challengee = :username and accepted isnull
          ");
          $othersChallengesQuery->execute(array(':username'=>$_SESSION[username]));
 
@@ -60,22 +60,9 @@
                                     <td align='right'><input style='border:none;' name='challengeDate' value='$row[scheduled]' readonly></input></td>
                                     <input type='hidden' name='challengerUsername' value='$row[challenger]' readonly></input>
                                     <td align='right'>
-                              ";
-                           
-                           // If no challenge hasn't been accepted display the accept/reject buttons
-                           if ($row[accepted] == "") {
-                              echo "
-                                 <input class='btn btn-primary btn-sm' type='submit' name='acceptChallenge' value='Accept'></input>
-                                 <input class='btn btn-primary btn-sm' type='submit' name='rejectChallenge' value='Reject'></input>
-                              ";
-                           }
-
-                           // Otherwise indicate that this is the current challegne
-                           else {
-                              echo "Current Challenge";
-                           }
-
-                           echo "
+                                       <input class='btn btn-primary btn-sm' type='submit' name='acceptChallenge' value='Accept'></input>
+                                       <input class='btn btn-primary btn-sm' type='submit' name='rejectChallenge' value='Reject'></input>
+                                    </td>
                                  </form>
                               </tr>
                            ";
