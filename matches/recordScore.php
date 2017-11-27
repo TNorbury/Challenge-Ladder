@@ -117,7 +117,6 @@
       foreach($query->fetchAll() as $row)
       {
          $newRank = (int)$row[rank] + 1;
-         echo $row[username]."--".$newRank."<br/>";
          
          $query = $connection->prepare("
             update player
