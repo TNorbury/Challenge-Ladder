@@ -95,7 +95,7 @@
                      {
                         echo "<td>".htmlspecialchars($resultRow[name])."</td>
                               <td align='right'>
-                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"$resultRow[name]\", \"$resultRow[username]\")'>Challenge</button>
+                                 <button class='btn btn-info btn-sm' data-toggle='modal' data-target='#challengeModal' onclick='openChallengeModal(\"".htmlspecialchars($resultRow[name], ENT_QUOTES)."\", \"$resultRow[username]\")'>Challenge</button>
                               </td>";
                      }
                      else
