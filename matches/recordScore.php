@@ -125,9 +125,6 @@
             where username = :username
          ");
          $query->execute(array(':newRank'=>$newRank, ':username'=>$row[username]));
-      
-      print_r($query->errorInfo());
-      echo "<br/>";
       }
 
       // Set challenger's rank equal to challengee's (old) rank
@@ -137,7 +134,6 @@
          where username = :challenger
       ");
       $query->execute(array(':challengeeRank'=>$challengeeRank, ':challenger'=>$challenger));
-      echo "<br/>";
    }
 
    // Delete the challenge that was just completed from the database
