@@ -1,11 +1,10 @@
 <?php 
-   
    // Make sure there is somebody logged in
    require($_SERVER['DOCUMENT_ROOT'].'/resources/sharedScripts/ensureLogin.php');
 
    // Get the php file that connects to the database
    require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
-   
+
    // Start off by getting the rank of the current player
    $query = $connection->prepare("
       select rank from player
@@ -22,14 +21,14 @@
       where challenger = :username or challengee = :username
    ");
    $query->execute(array(':username'=>$_SESSION[username]));
-   
+
    // Delete all games the player was involved in
    $query = $connection->prepare("
       delete from game
       where winner = :username or loser = :username
    ");
    $query->execute(array(':username'=>$_SESSION[username]));
-   
+
    // Delete the player from the DB
    $query = $connection->prepare("
       delete from player
@@ -57,7 +56,7 @@
    }
 
    // Now redirect the user to the logout page (this will ensure that their session is destoryed
-  echo "
+   echo "
    <body>
    <script>
       alert('You have been removed from the ladder');

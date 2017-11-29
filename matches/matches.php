@@ -266,8 +266,7 @@
 
                      </div>
                      <button id="moreScoreRowsButton" type="button" class="btn" onclick="addMoreGames()">Add Game</button>
-                     <div id="invalidScoreWarning" style="display:none;">
-                     </div>
+                     <div id="invalidScoreWarning" style="display:none;"></div>
 
                      <input type="hidden" id="matchWinner" name="matchWinner"></input>
                   </div>

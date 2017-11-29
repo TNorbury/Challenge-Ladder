@@ -40,5 +40,4 @@
       header("Location: /ladder/ladder.php");
       exit();
    }
-
 ?>

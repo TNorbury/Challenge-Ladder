@@ -1,5 +1,4 @@
 <?php 
-   
    // Make sure there is somebody logged in
    require($_SERVER['DOCUMENT_ROOT'].'/resources/sharedScripts/ensureLogin.php');
    
@@ -76,8 +75,7 @@
    if (($opponentIsChallenger && $_POST[matchWinner] == "Opponent") 
       || (!$opponentIsChallenger && $_POST[matchWinner] == "Player")) 
    {
-      // Challenger is the winner. We need to readjust the ladder.
-      
+      // Challenger is the winner! We need to readjust the ladder.
       // Get challenger and challengee's current rank
       $query = $connection->prepare("
          select username, rank from player
@@ -104,6 +102,7 @@
          where username = :challenger
       ");
       $query->execute(array(':challenger'=>$challenger));
+
       // Get all the players who need their rank update from the database
       $query = $connection->prepare("
          select username, rank from player

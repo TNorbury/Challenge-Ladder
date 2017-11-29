@@ -12,7 +12,8 @@
    ");
 
    // Execute the sql statement
-   $challengeQuery->execute(array('challengerUsername'=>$_SESSION[username], 'challengeeUsername'=>$_POST[challengeeUsername], 'challengeDate'=>$_POST[challengeDate]));
+   $challengeQuery->execute(array('challengerUsername'=>$_SESSION[username], 
+      'challengeeUsername'=>$_POST[challengeeUsername], 'challengeDate'=>$_POST[challengeDate]));
 
    // Make sure that the challenge was added
    if ($challengeQuery->rowCount() == 0) {

@@ -56,7 +56,6 @@
          <div class="row justify-content-center">
             <div class="col-7 ">
                <?php
-                  
                   // Get the php file that connects to the database
                   require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
 

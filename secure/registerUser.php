@@ -6,10 +6,10 @@
    $hashPW = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
    // This is the query that'll add the person to the database
-   $query = $connection->prepare("insert into player (name, email, rank, phone,
-                                                      username, password) 
-                                 select :name, :email, max(rank)+1, :phone, 
-                                        :username, :password from player");
+   $query = $connection->prepare("
+      insert into player (name, email, rank, phone, username, password) 
+      select :name, :email, max(rank)+1, :phone, :username, :password from player
+   ");
 
    // Execute the query
    $query->execute(array(':name'=>$_POST['name'], ':email'=>$_POST['email'],

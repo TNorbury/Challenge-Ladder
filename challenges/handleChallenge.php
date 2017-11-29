@@ -1,5 +1,4 @@
 <?php
-
    // Make sure there is somebody logged in
    require($_SERVER['DOCUMENT_ROOT'].'/resources/sharedScripts/ensureLogin.php');
 
@@ -19,7 +18,8 @@
       ");
 
       // Execute the query and then make sure that it updated something
-      $query->execute(array(':challengerUsername'=>$_POST[challengerUsername], ':challengeeUsername'=>$_SESSION[username], ':challengeDate'=>$_POST[challengeDate]));
+      $query->execute(array(':challengerUsername'=>$_POST[challengerUsername], 
+         ':challengeeUsername'=>$_SESSION[username], ':challengeDate'=>$_POST[challengeDate]));
 
       if ($query->rowCount() != 1) {
          echo "Couldn't accept the challenge";
@@ -62,7 +62,8 @@
             and scheduled = :challengeDate
       ");
 
-      $query->execute(array(':challengerUsername'=>$_POST[challengerUsername], ':challengeeUsername'=>$_SESSION[username], ':challengeDate'=>$_POST[challengeDate]));
+      $query->execute(array(':challengerUsername'=>$_POST[challengerUsername], 
+         ':challengeeUsername'=>$_SESSION[username], ':challengeDate'=>$_POST[challengeDate]));
       
       if ($query->rowCount() != 1) {
         echo "Couldn't reject the challenge";
