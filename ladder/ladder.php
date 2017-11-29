@@ -13,18 +13,38 @@
       <script>
          // This function changes the necessary text within the modal
          function openChallengeModal(challengee, challengeeUsername) {
-           // This will set text in the modal to reflect the person to be challeneged
-           document.getElementById("challengeModalHeader").innerHTML = "Challenge " + challengee + "!";  
-           document.getElementById("challengeModalName").value = challengee;
-           document.getElementById("challengeModalUsername").value = challengeeUsername;
+            // This will set text in the modal to reflect the person to be challeneged
+            document.getElementById("challengeModalHeader").innerHTML = "Challenge " + challengee + "!";  
+            document.getElementById("challengeModalName").value = challengee;
+            document.getElementById("challengeModalUsername").value = challengeeUsername;
 
-           // Reset the date field to its default value
-           document.getElementById("challengeModalDate").value = "mm/dd/yyyy";
+            // Reset the date field to its default value
+            document.getElementById("challengeModalDate").value = "mm/dd/yyyy";
+         }
+
+         // This will set the min date input to today's date
+         function setMinDate() {
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth() + 1;
+            var year = today.getFullYear();
+            
+            // If the day or month are less than 10 then append a 0 to the value
+            if (day < 10) {
+               day = '0' + day;
+            }
+            if (month < 10) {
+               month = '0' + month;
+            }
+
+            // Format the date values into a date string and update the min attribute
+            today = year + '-' + month + '-' + day;
+            document.getElementById("challengeModalDate").setAttribute("min", today);
          }
       </script>
    </head>
 
-   <body>
+   <body onload="setMinDate()">
       <?php
          // This will include the navbar
          include($_SERVER['DOCUMENT_ROOT'].'/navbar/navbar.html');
@@ -106,7 +126,6 @@
                      echo "</tr>\n";
                   }
                   echo "</tbody>";
-               
                   echo "</table>\n";
                ?>
             </div>
@@ -133,7 +152,7 @@
                   </div>
                   <div class="d-flex justify-content-between">
                      <div><label for="challengeDate">Challenge Date: </label></div>
-                     <div><input class="form-control" type="date" name="challengeDate" id="challengeModalDate" required></div>
+                     <div><input class="form-control" type="date" min="1996-01-01" name="challengeDate" id="challengeModalDate" required></div>
                   </div>
                   <input type="hidden" name="challengeeUsername" id="challengeModalUsername" readonly>
                </div>
