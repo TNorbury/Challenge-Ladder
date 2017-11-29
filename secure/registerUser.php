@@ -18,7 +18,15 @@
 
    // If no rows were inserted, then the user wasn't registered to the database
    if ($query->rowCount() == 0) {
-      echo "Error: Could not register to the database";
+      echo '
+      <html>
+      <body>
+      <script>
+         alert("Error: Cou not reigster to the database!");
+         window.location="/registerUser.html";
+      </script>
+      </body>
+      </html>';
       die();
    }
    
@@ -26,15 +34,11 @@
    // login page
    echo '
    <html>
-   <head>
+   <body>
    <script>
-   function redirect() {
       alert("You have been registered to the Ladder!");
       window.location="/index.html";
-   }
    </script>
-   </head>
-   <body onload="redirect()">
    </body>
    </html>';
 ?>

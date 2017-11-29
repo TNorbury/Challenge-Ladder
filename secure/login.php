@@ -20,15 +20,11 @@
    if (!$dbUsername || !password_verify($password, $validPassword)) {
       echo '
       <html>
-      <head>
+      <body>
       <script>
-      function invalidLogin() {
          alert("The username or password is incorrect");
          window.location = "/index.html";
-      }
       </script>
-      </head>
-      <body onload="invalidLogin()">
       </body>
       </html>
       ';
