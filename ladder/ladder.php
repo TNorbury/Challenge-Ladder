@@ -144,22 +144,22 @@
                </div>
 
                <form action="/ladder/issueChallenge.php" method="post">
-               <div class="modal-body">
-                  <div class="d-flex justify-content-between">
-                     <div><label for="challengee">Challengee: </label></div>
-                     <div><input class="form-control-plaintext" type="text" id="challengeModalName" name="challengee" readonly></div>
+                  <div class="modal-body">
+                     <div class="d-flex justify-content-between">
+                        <div><label for="challengee">Challengee: </label></div>
+                        <div><input class="form-control-plaintext" type="text" id="challengeModalName" name="challengee" readonly></div>
+                     </div>
+                     <div class="d-flex justify-content-between">
+                        <div><label for="challengeDate">Challenge Date: </label></div>
+                        <div><input class="form-control" type="date" min="1900-01-01" name="challengeDate" id="challengeModalDate" required></div>
+                     </div>
+                     <input type="hidden" name="challengeeUsername" id="challengeModalUsername" readonly>
                   </div>
-                  <div class="d-flex justify-content-between">
-                     <div><label for="challengeDate">Challenge Date: </label></div>
-                     <div><input class="form-control" type="date" min="1996-01-01" name="challengeDate" id="challengeModalDate" required></div>
-                  </div>
-                  <input type="hidden" name="challengeeUsername" id="challengeModalUsername" readonly>
-               </div>
 
-               <div class="modal-footer">
-                  <input type="submit" class="btn" value="Issue Challenge"></input>
-                  <input type="reset" class="btn" data-dismiss="modal" value="Cancel"></input>
-               </div>
+                  <div class="modal-footer">
+                     <input type="submit" class="btn" value="Issue Challenge"></input>
+                     <input type="reset" class="btn" data-dismiss="modal" value="Cancel"></input>
+                  </div>
                </form>
             </div>
          </div>
