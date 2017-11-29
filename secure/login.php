@@ -17,7 +17,7 @@
 
    // If the username doesn't exist in the database OR the password is 
    // incorrect, then don't allow them to log in.
-   if (!$dbUsername || $password != $validPassword) {
+   if (!$dbUsername || !password_verify($password, $validPassword)) {
       echo '
       <html>
       <head>
@@ -36,8 +36,7 @@
 
    // Otherwise, if the username is valid, and the password is correct, then redirect
    // to the ladder
-   // We'll want to change this so that it decrypts the PW in the database before checking for a match
-   else if ($dbUsername && $password == $validPassword) {
+   else if ($dbUsername && password_verify($password, $validPassword)) {
       // Set the session username to the user that just logged in
       $_SESSION["username"] = $username;
 

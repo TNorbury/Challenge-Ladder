@@ -2,6 +2,9 @@
    // Connect to the database
    require($_SERVER['DOCUMENT_ROOT'].'/dbConnect/dbConnect.php');
 
+   // Before we start the query we'll hash the password
+   $hashPW = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
    // This is the query that'll add the person to the database
    $query = $connection->prepare("insert into player (name, email, rank, phone,
                                                       username, password) 
@@ -11,7 +14,7 @@
    // Execute the query
    $query->execute(array(':name'=>$_POST['name'], ':email'=>$_POST['email'],
       ':phone'=>$_POST['phone'], ':username'=>$_POST['username'], 
-      ':password'=>$_POST['password']));
+      ':password'=>$hashPW));
 
    // If no rows were inserted, then the user wasn't registered to the database
    if ($query->rowCount() == 0) {
