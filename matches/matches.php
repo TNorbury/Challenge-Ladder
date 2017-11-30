@@ -43,9 +43,11 @@
 
                // Make sure that one player has scored at least 15 points and 
                // that they have at least 2 more points than the other player
-               if ((playerScore < 15 && opponentScore < 15) 
-                  || (playerScore - opponentScore < 2 
-                     && opponentScore - playerScore < 2)) 
+               if (!((playerScore > 15 && playerScore - opponentScore == 2) ||
+                     (playerScore == 15 && playerScore - opponentScore >= 2) ||
+                     (opponentScore > 15 && opponentScore - playerScore == 2) ||
+                     (opponentScore == 15 && opponentScore - playerScore >= 2))
+                  )
                {
                   validScore = false;
                   document.getElementById("invalidScoreWarning").style.display = "";
@@ -72,8 +74,8 @@
 
             // Iterate over all the game scores and count the number of wins
             for (var gameNum = 1; gameNum <= numGames && validScore; gameNum++) {
-               playerScore = document.getElementById("playerScore" + gameNum).value;
-               opponentScore = document.getElementById("opponentScore" + gameNum).value;
+               playerScore = +document.getElementById("playerScore" + gameNum).value;
+               opponentScore = +document.getElementById("opponentScore" + gameNum).value;
 
                // If this function is being called we can assume that all the 
                // score values have been validated. As such we just have to 
@@ -81,7 +83,7 @@
                if (playerScore > opponentScore) {
                   playerWins ++;
                }
-               else {
+               else if (opponentScore > playerScore){
                   opponentWins ++;
                }
             }
@@ -98,7 +100,7 @@
                if (playerWins == 3) {
                   document.getElementById("matchWinner").value = "Player";
                }
-               else {
+               else if (opponentWins == 3) {
                   document.getElementById("matchWinner").value = "Opponent";
                }
             }
@@ -219,11 +221,11 @@
 
                         <div class="form-row">
                            <div class="form-group">
-                              <label for="playerScore1">Your Score:</label>
+                              <label class="col-form-label" for="playerScore1">Your Score:</label>
                               <input type="number" class="form-control" id="playerScore1" name="playerScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
                            </div>
                            <div class="form-group">
-                              <label for="opponentScore1">Your Opponent's Score:</label>
+                              <label class="col-form-label" for="opponentScore1">Your Opponent's Score:</label>
                               <input type="number" class="form-control" id="opponentScore1" name="opponentScore1" placeholder="Game 1" oninput="validateScoreValues()" required>
                            </div>
                         </div>
